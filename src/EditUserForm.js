@@ -7,40 +7,51 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Box from "@mui/material/Box";
 import "./App.css";
-import {  useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-const EditUserForm = () => {
-  const id=useParams()._id;
+function EditUserForm()  {
+  const id=useParams()._id
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
   const[name,setname]=useState("")
   const[email,setemail]=useState("")
   const[phone,setphone]=useState("")
   const[role,setrole]=useState("")
-  console.log(id)
-    
-   const getdata=()=>{
-    axios.get(`http://localhost:7000/crud/updatedata/${id}`)
-    .then((item)=>{
-      console.log(item)
-      // console.log(JSON.stringify(item.data.data))
-    })
+
+
+      useEffect(()=>{
+        axios.get(`http://localhost:7000/crud/updatedata/${id}`)
+          .then((data) =>{
+             setUsers(data.data.data)});
+      },[])
+
+  useEffect(()=>{
+    setname(users.name)
+    setemail(users.email)
+    setphone(users.phone)
+    setrole(users.role)
+
+  },[users])
+
+const submitform=()=>{
+
+  const updatedata={
+    name:name,
+    email:email,
+    phone:phone,
+    role:role,
+    _id:id
+  };  
+
+  fetch(`http://localhost:7000/crud/update`, {
+    method: "PUT",body: JSON.stringify(updatedata),
+    headers: {"Content-Type": "application/json",},
+  }).then((item) =>  {navigate('/userlist')
+  console.log(item)})
+ 
 }
-
-useEffect(()=>{
-    getdata()
-},[])
-
-
-    const userdata=()=>{
-      setname(users.name)
-      setemail(users.email)
-      setphone(users.phone)
-      setrole(users.role)
-    }
-    userdata();
-
 
   return (
     <div>
@@ -88,10 +99,11 @@ useEffect(()=>{
               size="small"
               variant="contained"           
               className="button muted-button"
+              onClick={()=>navigate('/userlist')}
             >
               Cancel
             </Button>
-            <Button   size="small" variant="contained">
+            <Button onClick={()=>submitform()}  size="small" variant="contained">
              Save
             </Button>
           </DialogActions>
