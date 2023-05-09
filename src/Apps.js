@@ -12,7 +12,7 @@ const Apps = () => {
     <div >
      
       <Routes>
-      <Route path="/userlist" element={<UserTable />} />
+      <Route path="/" element={<UserTable />} />
       <Route path="/edit/:_id" element={<EditUserForm />} />
       <Route path="/add" element={<AddUserForm />} />
       </Routes>

@@ -27,7 +27,7 @@ const Submitform=()=>{
         email:email,
         phone:phone,
         role:role,
-        image:selectedFile
+        //image:selectedFile
       };     
       console.log(selectedFile)
 
@@ -36,7 +36,7 @@ const Submitform=()=>{
         headers: {"Content-Type": "application/json",}
       }).then((item) =>{ 
         console.log(item)
-        navigate('/userlist')});
+        navigate('/')});
 }
 
 const onFormSubmit=(e)=>{
@@ -113,6 +113,7 @@ const onFormSubmit=(e)=>{
               size="small"
               variant="contained"           
               className="button muted-button"
+              onClick={()=>navigate('/')}
             >
               Cancel
             </Button>

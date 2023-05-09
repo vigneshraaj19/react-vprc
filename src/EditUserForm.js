@@ -48,7 +48,7 @@ const submitform=()=>{
   fetch(`http://localhost:7000/crud/update`, {
     method: "PUT",body: JSON.stringify(updatedata),
     headers: {"Content-Type": "application/json",},
-  }).then((item) =>  {navigate('/userlist')
+  }).then((item) =>  {navigate('/')
   console.log(item)})
  
 }
@@ -99,7 +99,7 @@ const submitform=()=>{
               size="small"
               variant="contained"           
               className="button muted-button"
-              onClick={()=>navigate('/userlist')}
+              onClick={()=>navigate('/')}
             >
               Cancel
             </Button>
