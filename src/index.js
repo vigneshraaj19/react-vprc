@@ -14,9 +14,7 @@ root.render(
   </BrowserRouter>
 );
 
-///vigneshraajqerte
-//efqefqfq  f
 
-
-
+//oiueleaflkeajfpewo
 // ReactDOM.render( <App />,document.getElementById('root'));
+
