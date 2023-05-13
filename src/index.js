@@ -15,6 +15,4 @@ root.render(
 );
 
 
-//oiueleaflkeajfpewo
 // ReactDOM.render( <App />,document.getElementById('root'));
-
